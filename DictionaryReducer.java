@@ -24,43 +24,42 @@ public class DictionaryReducer extends Reducer<Text,Text,Text,Text> {
 
         String translations = "";
         for (Text val : values){
-            String[] language = val.toString().split(":");
-            if(language.equals("french")){
+            String[] language = val.toString().split(":",2);
+            if(language[0].equals("french")){
                 french=true;
-                frenchWord=listValues(val.toString());
+                frenchWord=listValues(language[1]);
             }
-            else if(language.equals("german")){
+            else if(language[0].equals("german")){
                 german=true;
-                germanWord=listValues(val.toString());
+                germanWord=listValues(language[1]);
             }
-            else if(language.equals("italian")){
+            else if(language[0].equals("italian")){
                 italian=true;
-                italianWord=listValues(val.toString());
+                italianWord=listValues(language[1]);
             }
-            else if(language.equals("portugese")){
+            else if(language[0].equals("portugese")){
                 portugese=true;
-                portugeseWord=listValues(val.toString());
+                portugeseWord=listValues(language[1]);
             }
-            else if(language.equals("spanish")){
+            else if(language[0].equals("spanish")){
                 spanish=true;
-                spanishWord=listValues(val.toString());
+                spanishWord=listValues(language[1]);
             }
                 
-            translations += frenchWord +" | "+germanWord+" | "+italianWord+" | "+portugeseWord+" | "+spanishWord;
         }
         if(german==false){
             germanWord= "german : N/A";
         }
-        if(italian = false) {
+        if(italian == false) {
             italianWord= "italian : N/A";
         }
-        if(french = false) {
+        if(french == false) {
             frenchWord= "french : N/A";
         }
-        if(portugese = false) {
+        if(portugese == false) {
             portugeseWord= "portugese : N/A";
         }
-        if(spanish = false) {
+        if(spanish == false) {
             spanishWord= "spanish : N/A";
         }
         
@@ -76,6 +75,7 @@ public class DictionaryReducer extends Reducer<Text,Text,Text,Text> {
             for(int i=0;i<tokens.length;i++){
                 result+=tokens[i]+',';
             }
+            result = result.substring(0,result.length()-1);
         }
         else
             result=word;
