@@ -24,40 +24,44 @@ public class DictionaryReducer extends Reducer<Text,Text,Text,Text> {
 
         String translations = "";
         for (Text val : values){
-            String[] language = val.toString().split(":",2);
-            if(language[0].equals("french")){
+            System.out.println("Full Value :"+val);
+            String[] language = val.toString().split(":");
+            System.out.println("language:"+language[0]);
+            System.out.println("values:"+language[1]);
+            
+            if(language[0].matches("french")){
                 french=true;
-                frenchWord=listValues(language[1]);
+                frenchWord=language[0]+":"+listValues(language[1]);
             }
-            else if(language[0].equals("german")){
+            else if(language[0].matches("german")){
                 german=true;
-                germanWord=listValues(language[1]);
+                germanWord=language[0]+":"+listValues(language[1]);
             }
-            else if(language[0].equals("italian")){
+            else if(language[0].matches("italian")){
                 italian=true;
-                italianWord=listValues(language[1]);
+                italianWord=language[0]+":"+listValues(language[1]);
             }
-            else if(language[0].equals("portugese")){
+            else if(language[0].matches("portugese*")){
                 portugese=true;
-                portugeseWord=listValues(language[1]);
+                portugeseWord=language[0]+":"+listValues(language[1]);
             }
-            else if(language[0].equals("spanish")){
+            else if(language[0].matches("spanish*")){
                 spanish=true;
-                spanishWord=listValues(language[1]);
+                spanishWord=language[0]+":"+listValues(language[1]);
             }
                 
         }
         if(german==false){
-            germanWord= "german : N/A";
+            germanWord= "german:N/A";
         }
         if(italian == false) {
-            italianWord= "italian : N/A";
+            italianWord= "italian:N/A";
         }
         if(french == false) {
-            frenchWord= "french : N/A";
+            frenchWord= "french:N/A";
         }
         if(portugese == false) {
-            portugeseWord= "portugese : N/A";
+            portugeseWord= "portugese:N/A";
         }
         if(spanish == false) {
             spanishWord= "spanish : N/A";

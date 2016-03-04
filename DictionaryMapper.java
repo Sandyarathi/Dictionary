@@ -20,7 +20,7 @@ public class DictionaryMapper  extends Mapper<Text, Text, Text, Text> {
                     String[] splitValue=value.toString().split("\\[",2);
                     if(splitValue.length!=0 && splitValue.length!=1){
                             String keyMap= key + " : ["+splitValue[1].substring(0,splitValue[1].length()-1)+"]";
-                            String valueMap = language+ " : "+splitValue[0];
+                            String valueMap = language+ ":"+splitValue[0];
                 context.write(new Text(keyMap), new Text(valueMap));
             }
             
