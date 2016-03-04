@@ -12,7 +12,7 @@ public class DictionaryReducer extends Reducer<Text,Text,Text,Text> {
         boolean french=false;
         boolean german=false;
         boolean italian=false;
-        boolean portuguese=false
+        boolean portugese=false;
         boolean spanish=false;
 
         String frenchWord="";
@@ -23,8 +23,8 @@ public class DictionaryReducer extends Reducer<Text,Text,Text,Text> {
 
 
         String translations = "";
-        for (Text val : values){+
-            String[] language = val.split(":");
+        for (Text val : values){
+            String[] language = val.toString().split(":");
             if(language.equals("french")){
                 french=true;
                 frenchWord=listValues(val.toString());
@@ -49,19 +49,19 @@ public class DictionaryReducer extends Reducer<Text,Text,Text,Text> {
             translations += frenchWord +" | "+germanWord+" | "+italianWord+" | "+portugeseWord+" | "+spanishWord;
         }
         if(german==false){
-            germanWord= "german : N/A"
+            germanWord= "german : N/A";
         }
         if(italian = false) {
-            italianWord= "italian : N/A"
+            italianWord= "italian : N/A";
         }
         if(french = false) {
-            frenchWord= "french : N/A"
+            frenchWord= "french : N/A";
         }
         if(portugese = false) {
-            portugeseWord= "portugese : N/A"
+            portugeseWord= "portugese : N/A";
         }
         if(spanish = false) {
-            spanishWord= "spanish : N/A"
+            spanishWord= "spanish : N/A";
         }
         
         translations += frenchWord +" | "+germanWord+" | "+italianWord+" | "+portugeseWord+" | "+spanishWord;
@@ -70,17 +70,16 @@ public class DictionaryReducer extends Reducer<Text,Text,Text,Text> {
    }
 
    private String listValues(String word){
-   		String result = "";
-   		String[]tokens = word.split(",|;");
-   		if(tokens.length >1){
-   			for(int i=0;i<tokens.length;i++){
-   				result+=tokens[i]+',';
-   			}
-   		}
-   		else
-   			result=word;
-   		}
-   		return result;
+        String result = "";
+        String[]tokens = word.split(",|;");
+        if(tokens.length >1){
+            for(int i=0;i<tokens.length;i++){
+                result+=tokens[i]+',';
+            }
+        }
+        else
+            result=word;
+        return result;
 
    }
     
